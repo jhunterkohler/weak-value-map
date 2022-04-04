@@ -18,6 +18,8 @@ out/
 # Temporary
 temp.*
 tmp.*
+temp
+tmp
 
 # Objects
 *.o
