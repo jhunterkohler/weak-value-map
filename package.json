@@ -22,7 +22,7 @@
   "types": "dist/weak-value-map.d.ts",
   "license": "MIT",
   "type": "module",
-  "name": "weak-value-map",
+  "name": "@hunterkohler/weak-value-map",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/HunterKohler/weak-value-map.git"
