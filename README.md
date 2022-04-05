@@ -23,7 +23,7 @@ Install from npm:
 
 ## Documentation
 
-See the main class documentation [here][main-docs].
+See the documentation [here][main-docs].
 
 ## Typescript
 
