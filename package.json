@@ -15,6 +15,9 @@
     "Set",
     "WeakSet"
   ],
+  "files": [
+    "dist"
+  ],
   "exports": {
     ".": "./dist/index.js",
     "./package.json": "./package.json"
