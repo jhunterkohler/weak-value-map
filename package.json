@@ -25,7 +25,7 @@
   },
   "scripts": {
     "build": "tsc",
-    "docs": "typedoc --out docs src/index.ts"
+    "docs": "typedoc --excludePrivate --out docs src/index.ts"
   },
   "version": "1.0.0",
   "devDependencies": {
