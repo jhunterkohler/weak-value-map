@@ -4,18 +4,25 @@
 
 /**
  * Map to weakly held values.
+ *
+ * @template K Type of keys.
+ * @template V Type of objects. Must be objects, so that they may be weakly
+ *     referenced.
  */
 export class WeakValueMap<K, V extends object> {
+    private _data: Map<K, WeakRef<V>>;
+
     /**
-     * Returns the `WeakValueMap` constructor.
+     * Returns the `WeakValueMap` constructor. Override in subclasses for
+     * idiomatic inheritance.
      */
     static get [Symbol.species]() {
         return WeakValueMap;
     }
 
-    private _data: Map<K, WeakRef<V>>;
-
     /**
+     * Construct a `WeakValueMap`.
+     *
      * @param iterable - Entries to initially insert.
      */
     constructor(iterable?: Iterable<readonly [K, V]>) {
@@ -48,7 +55,11 @@ export class WeakValueMap<K, V extends object> {
     }
 
     /**
-     * Delete a key from the map.
+     * Delete an entry from the map.
+     *
+     * @param key Key of entry.
+     * @returns Results in a boolean indicating if the map contained an entry
+     *     associated with `key` before attempting deletion.
      */
     delete(key: K) {
         const has = this.has(key);
@@ -58,6 +69,9 @@ export class WeakValueMap<K, V extends object> {
 
     /**
      * Check if the map contains a key.
+     *
+     * @returns Wether the map contains a referenceable entry associated with
+     *     `key`.
      */
     has(key: K) {
         return !!this._data.get(key)?.deref();
@@ -82,6 +96,8 @@ export class WeakValueMap<K, V extends object> {
 
     /**
      * Set entry in the map.
+     *
+     * @returns The map, for the purposes of chaining.
      */
     set(key: K, value: V) {
         this._data.set(key, new WeakRef(value));

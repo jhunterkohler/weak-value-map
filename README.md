@@ -15,6 +15,12 @@ The only difference from the standard [`Map`][mdn-map] api is a method
 `WeakValueMap.prototype.clean` which searches all entries in the map, deleting
 those who's values have been destroyed.
 
+## Install
+
+Install from npm:
+
+`npm install weak-value-map`
+
 ## Documentation
 
 See the main class documentation [here][main-docs].
@@ -22,9 +28,3 @@ See the main class documentation [here][main-docs].
 ## Typescript
 
 The project has native type support.
-
-## Install
-
-Install from npm:
-
-`npm install weak-value-map`
