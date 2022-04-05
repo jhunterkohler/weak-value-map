@@ -15,6 +15,10 @@
     "Set",
     "WeakSet"
   ],
+  "exports": {
+    ".": "./dist/index.js",
+    "./package.json": "./package.json"
+  },
   "types": "dist/weak-value-map.d.ts",
   "license": "MIT",
   "type": "module",
@@ -29,13 +33,7 @@
   },
   "version": "1.0.0",
   "devDependencies": {
-    "@microsoft/api-documenter": "^7.17.0",
-    "@microsoft/api-extractor": "^7.20.0",
-    "@types/node": "^17.0.23",
-    "concat-md": "^0.3.8",
-    "type2docfx": "^0.11.4",
     "typedoc": "^0.22.13",
-    "typedoc-plugin-markdown": "^3.11.14",
     "typescript": "^4.6.3"
   }
 }
