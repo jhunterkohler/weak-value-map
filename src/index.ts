@@ -6,7 +6,7 @@
  * Map to weakly held values.
  *
  * @template K Type of keys.
- * @template V Type of objects. Must be objects, so that they may be weakly
+ * @template V Type of values. Must be objects, so that they may be weakly
  *     referenced.
  */
 export class WeakValueMap<K, V extends object> {
@@ -21,15 +21,15 @@ export class WeakValueMap<K, V extends object> {
     }
 
     /**
-     * Construct a `WeakValueMap`.
+     * Construct a `WeakValueMap`. Optionally pass initial entries.
      *
-     * @param iterable - Entries to initially insert.
+     * @param entries Entries to initially insert.
      */
-    constructor(iterable?: Iterable<readonly [K, V]>) {
+    constructor(entries?: Iterable<readonly [K, V]>) {
         this._data = new Map();
 
-        if (iterable) {
-            for (const [key, val] of iterable) {
+        if (entries) {
+            for (const [key, val] of entries) {
                 this._data.set(key, new WeakRef(val));
             }
         }
@@ -44,9 +44,8 @@ export class WeakValueMap<K, V extends object> {
 
     /**
      * Searches all entries in the map, deleting those who's values have been
-     * destroyed.
-     *
-     * Usually, entries are deleted on a bad access.
+     * destroyed. Usually, entries are deleted only on an access to an existing,
+     * non-referenceable value.
      */
     clean() {
         for (const key of this.keys()) {
@@ -78,8 +77,11 @@ export class WeakValueMap<K, V extends object> {
     }
 
     /**
-     * Gets value associated with a key in the map. If the key does not exist,
-     * or the weak reference to the value has expired, this return `undefined`.
+     * Gets value associated with a key in the map.
+     *
+     * @param key Key of entry whose value to retrieve.
+     * @returns Value of associated entry, or `undefined` if non-existant, or
+     *     expired.
      */
     get(key: K) {
         const value = this._data.get(key);
@@ -116,6 +118,7 @@ export class WeakValueMap<K, V extends object> {
             }
         }
     }
+
     /**
      * Get iterator over the map keys.
      */
@@ -136,6 +139,9 @@ export class WeakValueMap<K, V extends object> {
 
     /**
      * Call a function for each entry of the map.
+     *
+     * @param callback Iteratee.
+     * @param thisArg `this` value applied on calls to `callback`.
      */
     forEach(
         callback: (value: V, key: K, map: WeakValueMap<K, V>) => void,
@@ -147,7 +153,8 @@ export class WeakValueMap<K, V extends object> {
     }
 
     /**
-     * Get iterator over the map entries.
+     * Get iterator over the map entries. Equivalent to
+     * `WeakValueMap.prototype.entries()`.
      */
     [Symbol.iterator]() {
         return this.entries();
