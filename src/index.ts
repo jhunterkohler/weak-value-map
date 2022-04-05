@@ -3,7 +3,6 @@
  */
 
 /**
- * @public
  * Map to weakly held values.
  */
 export class WeakValueMap<K, V extends object> {
