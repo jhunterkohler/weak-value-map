@@ -36,6 +36,18 @@ export class WeakValueMap<K, V extends object> {
     }
 
     /**
+     * Searches all entries in the map, deleting those who's values have been
+     * destroyed.
+     *
+     * Usually, entries are deleted on a bad access.
+     */
+    clean() {
+        for (const key of this.keys()) {
+            this.get(key);
+        }
+    }
+
+    /**
      * Delete a key from the map.
      */
     delete(key: K) {

@@ -25,7 +25,7 @@
   },
   "scripts": {
     "build": "tsc",
-    "docs": "mkdir -p build && typedoc --plugin typedoc-plugin-markdown --out build/docs src/index.ts && tail -n +2 build/docs/classes/WeakValueMap.md > README.md && rm -r build/docs"
+    "docs": "typedoc --out docs src/index.ts"
   },
   "version": "1.0.0",
   "devDependencies": {
