@@ -1,4 +1,4 @@
-[main-docs]: https://hunterkohler.github.io/weak-value-map/ "Main documentation"
+[main-docs]: https://jhunterkohler.github.io/weak-value-map/ "Main documentation"
 
 # WeakValueMap
 
